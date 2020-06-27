@@ -1,15 +1,13 @@
 <template>
   <main>
-    <h1>Task manager</h1>
+    <h3>Task list</h3>
   </main>
 </template>
 
 <script>
 
 export default {
-  name: 'Home',
-  components: {
-  }
+  name: 'task-list',
 }
 </script>
 
