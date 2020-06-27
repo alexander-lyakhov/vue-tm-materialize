@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import home from '../views/home.vue'
+import create from '../views/create.vue'
 
 Vue.use(VueRouter)
 
@@ -10,8 +10,8 @@ const router = new VueRouter({
   routes:[
     {
       path: '/',
-      name: 'home',
-      component: home
+      name: 'create',
+      component: create
     },
     {
       path: '/list',
@@ -19,8 +19,8 @@ const router = new VueRouter({
       component: () => import(/* webpackChunkName: "about" */ '../views/task-list.vue')
     },
     {
-      path: '/details',
-      name: 'task-details',
+      path: '/task',
+      name: 'task',
       component: () => import(/* webpackChunkName: "about" */ '../views/task-details.vue')
     },
   ]

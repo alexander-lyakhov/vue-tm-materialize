@@ -9,7 +9,7 @@
         <router-link tag="li" to="/list" active-class="active">
           <a href="#">Task List</a>
         </router-link>
-        <router-link tag="li" to="/details" active-class="active">
+        <router-link tag="li" to="/task" active-class="active">
           <a href="#">Task details</a>
         </router-link>
       </ul>
@@ -24,9 +24,7 @@
 </script>
 
 <style lang="scss" scoped>
-
-nav {
-  padding: 0 1rem;
-}
-
+  nav {
+    padding: 0 1rem;
+  }
 </style>
