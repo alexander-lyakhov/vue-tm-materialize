@@ -1,7 +1,5 @@
 <template>
-  <main>
-    <h3>Task list</h3>
-  </main>
+  <h3>Task list</h3>
 </template>
 
 <script>

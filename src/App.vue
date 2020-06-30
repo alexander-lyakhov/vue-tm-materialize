@@ -22,7 +22,10 @@
 <style lang="scss">
 //@import "~materialize-css/dist/css/materialize.min.css";
 
+body {
+  //background: color("materialize-red", "lighten-2");
+}
 main {
-  padding: 0 1rem;
+  //padding: 0 1rem;
 }
 </style>
