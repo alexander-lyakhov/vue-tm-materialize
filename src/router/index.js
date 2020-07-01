@@ -19,7 +19,7 @@ const router = new VueRouter({
       component: () => import(/* webpackChunkName: "about" */ '../views/task-list.vue')
     },
     {
-      path: '/task',
+      path: '/task/:id',
       name: 'task',
       component: () => import(/* webpackChunkName: "about" */ '../views/task-details.vue')
     },

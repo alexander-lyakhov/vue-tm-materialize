@@ -72,11 +72,14 @@ export default {
       const task = {
         id: new Date().getTime().toString(12),
         title: this.title,
+        description: this.description,
         date: this.datepicker.date,
         tags: this.chips.chipsData
       };
 
       this.$store.commit('addTask', task);
+
+      this.$router.push('/list');
 
       console.log('onSubmit', task);
     }
