@@ -17,10 +17,10 @@
         <tr v-for="(task, index) in tasks" :key="index">
           <td>{{index + 1}}</td>
           <td>{{task.title}}</td>
-          <td class="cell-description truncate">{{task.description}}</td>
+          <td class="cell-description">{{task.description}}</td>
           <td>{{dateToString(task)}}</td>
           <td>{{getStatus(task)}}</td>
-          <td><router-link  class="btn" :to="`/task/${task.id}`">Open</router-link></td>
+          <td><router-link class="btn" :to="`/task/${task.id}`">Open</router-link></td>
         </tr>
       </tbody>
     </table>
@@ -56,7 +56,9 @@ export default {
 
 <style lang="scss" scoped>
   .cell-description {
-    //background: #edc;
     max-width: 400px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 </style>

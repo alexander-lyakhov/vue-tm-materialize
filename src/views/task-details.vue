@@ -1,7 +1,10 @@
 <template>
   <div class="row grey lighten-4">
     <div class="col s6 offset-s3">
-      <h3>Task details</h3>
+      <div class="row">
+        <h3><span class="grey-text">Task:</span> {{task.title}}</h3>
+      </div>
+
       <form @submit.prevent="onSubmit" @reset.prevent="onReset">
         <div class="row">
           <div class="input-field">
@@ -27,7 +30,7 @@
             <i class="material-icons right">send</i>
           </button>
 
-          <button class="btn red lighten-2" type="reset">
+          <button class="btn black-text orange lighten-2" type="reset">
             Reset
             <i class="material-icons right">autorenew</i>
           </button>

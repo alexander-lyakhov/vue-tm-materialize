@@ -1,7 +1,9 @@
 <template>
   <div class="row grey lighten-4">
     <div class="col s6 offset-s3">
-      <h3>Create task</h3>
+      <div class="row">
+        <h3>Create new task</h3>
+      </div>
       <form @submit.prevent="onSubmit">
         <div class="row">
           <div class="input-field">
