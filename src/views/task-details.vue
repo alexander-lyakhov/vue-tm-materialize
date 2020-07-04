@@ -67,19 +67,15 @@ export default {
 
   computed: {
     ...mapGetters(['taskById']),
-
-    isTitleActive() {
-      return this.task.title && this.task.title.value !== '';
-    },
-
-    isDescriptionActive() {
-      return this.task.description && this.task.description.value !== '';
-    }
   },
 
   methods: {
     onSubmit() {
       console.log('onSubmit');
+
+      this.$store.commit('updateTask', this.task);
+
+      this.$router.push('/list');
     },
 
     onReset() {
@@ -88,8 +84,15 @@ export default {
       this.init();
     },
 
+    onDateSelect(date) {
+      console.log('onDateSelect', date);
+      this.task.date = date;
+    },
+
     init() {
       console.log('init');
+
+      const _this = this;
 
       const id = this.$route.params.id;
       this.task = JSON.parse(JSON.stringify(this.taskById(id)));
@@ -103,7 +106,8 @@ export default {
       this.datepicker = M.Datepicker.init(this.$refs.datepicker, {
         format: 'dd.mm.yyyy',
         defaultDate: new Date(this.task.date),
-        setDefaultDate: true
+        setDefaultDate: true,
+        onSelect: _this.onDateSelect
       });
 
       this.$refs.description.value = this.task.description;

@@ -19,6 +19,16 @@ export default new Vuex.Store({
       console.log('addTask');
       state.tasks.push(task);
       localStorage.setItem('tasks', JSON.stringify(state.tasks));
+    },
+
+    updateTask(state, task) {
+      const index = state.tasks.findIndex(el => el.id === task.id);
+      console.log('updateTask', task, index);
+
+      if (index >= 0) {
+        state.tasks[index] = task;
+        localStorage.setItem('tasks', JSON.stringify(state.tasks));
+      }
     }
   },
 
