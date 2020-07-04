@@ -41,7 +41,7 @@ export default {
 
   methods: {
     dateToString(task) {
-      return new Date(task.date).toLocaleDateString()
+      return new Date(task.date).toLocaleDateString('ru-RU');
     },
     isActive(task) {
       return (Date.now() < new Date(task.date).getTime());

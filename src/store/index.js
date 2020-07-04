@@ -8,6 +8,12 @@ export default new Vuex.Store({
     tasks: JSON.parse(localStorage.getItem('tasks')) || []
   },
 
+  getters: {
+    taskById(state) {
+      return (id) => state.tasks.find(el => el.id === id);
+    }
+  },
+
   mutations: {
     addTask(state, task) {
       console.log('addTask');
