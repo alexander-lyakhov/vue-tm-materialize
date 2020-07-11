@@ -5,6 +5,18 @@
         <h3><span class="grey-text">Task:</span> {{task.title}}</h3>
       </div>
 
+      <div class="row">
+        <div class="status left">Status:</div>
+        <div class="switch right">
+          <label>
+            Active
+            <input type="checkbox">
+            <span class="lever"></span>
+            Completed
+          </label>
+        </div>
+      </div>
+
       <form @submit.prevent="onSubmit" @reset.prevent="onReset">
         <div class="row">
           <div class="input-field">
