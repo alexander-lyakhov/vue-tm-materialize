@@ -3,7 +3,7 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">Task manager</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <router-link tag="li" to="/" active-class="active" exact>
+        <router-link tag="li" to="/create" active-class="active">
           <a href="#">Create task</a>
         </router-link>
         <router-link tag="li" to="/list" active-class="active">

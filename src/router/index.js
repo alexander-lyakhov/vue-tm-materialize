@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import create from '../views/create.vue'
 
 Vue.use(VueRouter)
 
@@ -9,9 +8,9 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes:[
     {
-      path: '/',
+      path: '/create',
       name: 'create',
-      component: create
+      component: () => import(/* webpackChunkName: "about" */ '../views/create.vue')
     },
     {
       path: '/list',
@@ -22,6 +21,11 @@ const router = new VueRouter({
       path: '/task/:id',
       name: 'task',
       component: () => import(/* webpackChunkName: "about" */ '../views/task-details.vue')
+    },
+    {
+      path: '/',
+      name: 'list',
+      redirect: '/list'
     },
   ]
 })

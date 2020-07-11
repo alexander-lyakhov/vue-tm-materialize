@@ -25,20 +25,28 @@
             <input class="custom-class">
           </div>
 
-          <button class="btn teal lighten-1" type="submit">
+          <button class="btn teal lighten-1 right" type="submit">
             Update
             <i class="material-icons right">send</i>
           </button>
 
-          <button class="btn black-text orange lighten-2" type="reset">
-            Reset
-            <i class="material-icons right">autorenew</i>
-          </button>
-
-          <router-link class="btn blue lighten-1 right" to="/list">
-            Cancel
+          <router-link
+            class="btn-floating btn-large btn-cancel blue lighten-1"
+            to="/list"
+            ref="btn-cancel"
+            data-tooltip="Cancel"
+          >
             <i class="material-icons right">directions_run</i>
           </router-link>
+
+          <button
+            class="btn-floating btn-large btn-reset orange darken-2 waves-effect waves-light"
+            type="reset"
+            ref="btn-reset"
+            data-tooltip="Reset"
+          >
+            <i class="material-icons right">autorenew</i>
+          </button>
         </div>
       </form>
     </div>
@@ -57,6 +65,13 @@ export default {
   }),
 
   mounted() {
+    const elems = document.querySelectorAll('.btn-floating');
+
+    M.Tooltip.init(elems, {
+      position: 'right',
+      exitDelay: 0
+    });
+
     this.init();
   },
 
@@ -137,6 +152,22 @@ export default {
 <style lang="scss" scoped>
   .btn {
     min-width: 120px;
-    margin: 0 8px 0 0;
+  }
+
+  form {
+    position: relative;
+  }
+
+  .btn-floating {
+    position: absolute;
+    right: -120px;
+  }
+
+  .btn-cancel {
+    top: 0;
+  }
+
+  .btn-reset {
+    top: 72px;
   }
 </style>

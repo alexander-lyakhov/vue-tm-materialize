@@ -24,7 +24,19 @@
             <input class="custom-class">
           </div>
 
-          <button class="btn right" type="submit">Submit</button>
+          <button class="btn teal lighten-1 right" type="submit">
+            Submit
+            <i class="material-icons right">send</i>
+          </button>
+
+          <router-link
+            class="btn-floating btn-large btn-cancel blue lighten-1"
+            to="/list"
+            ref="btn-cancel"
+            data-tooltip="Cancel"
+          >
+            <i class="material-icons right">directions_run</i>
+          </router-link>
         </div>
       </form>
     </div>
@@ -47,6 +59,13 @@ export default {
   }),
 
   mounted() {
+    const elems = document.querySelectorAll('.btn-floating');
+
+    M.Tooltip.init(elems, {
+      position: 'right',
+      exitDelay: 0
+    });
+
     this.chips = M.Chips.init(this.$refs.chips, {
       placeholder: 'Enter a tag',
       secondaryPlaceholder: '+Tag',
@@ -90,4 +109,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .btn {
+    min-width: 120px;
+  }
+
+  form {
+    position: relative;
+  }
+
+  .btn-floating {
+    position: absolute;
+    right: -120px;
+  }
+
+  .btn-cancel {
+    top: 0;
+  }
 </style>
