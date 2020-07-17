@@ -6,11 +6,11 @@
       </div>
 
       <div class="row">
-        <div class="left">Status: <span class="status-value" :class="{'completed': statusValue}">{{status}}</span></div>
+        <div class="left">Status: <span class="status-value" :class="{'completed': isComplete}">{{status}}</span></div>
         <div class="switch right">
           <label>
             Active
-            <input type="checkbox" v-model="statusValue">
+            <input type="checkbox" v-model="isComplete">
             <span class="lever"></span>
             Completed
           </label>
@@ -37,7 +37,7 @@
             <input class="custom-class">
           </div>
 
-          <button class="btn teal lighten-1 right" type="submit">
+          <button v-if="!isComplete" class="btn teal lighten-1 right" type="submit">
             Update
             <i class="material-icons right">send</i>
           </button>
@@ -73,7 +73,7 @@ export default {
   name: 'task-details',
 
   data: () => ({
-    statusValue: false,
+    isComplete: false,
     task: {}
   }),
 
@@ -97,7 +97,7 @@ export default {
     ...mapGetters(['taskById']),
 
     status() {
-      return !this.statusValue ? 'Active':'Completed';
+      return !this.isComplete? 'Active':'Completed';
     }
   },
 
@@ -168,11 +168,15 @@ export default {
 
 <style lang="scss" scoped>
   .status-value {
-    color: #fff;
-    background: #000;
+    color: #000;
+    background: #00e676;
     border-radius: 4px;
     margin: 0 0 0 .25rem;
     padding: .5rem .75rem;
+
+    &.completed {
+      background: #c0c0c0;
+    }
   }
 
   .btn {
