@@ -95,7 +95,8 @@ export default {
         title: this.title,
         description: this.description,
         date: this.datepicker.date,
-        tags: this.chips.chipsData
+        tags: this.chips.chipsData,
+        isComplete: false
       };
 
       this.$store.commit('addTask', task);
