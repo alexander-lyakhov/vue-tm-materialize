@@ -28,13 +28,19 @@
           <div class="input-field">
             <textarea id="description" ref="description" class="materialize-textarea" v-model="task.description" :disabled="task.isComplete"></textarea>
             <label for="description" ref="label-description">Textarea</label>
-            <span class="character-counter" style="float: right; font-size: 12px;">{{(task.description || {}).length}}/2048</span>
+            <span class="character-counter" style="float: right; font-size: 12px;">{{(task.description || '').length}}/2048</span>
           </div>
 
           <input type="text" ref="datepicker" :disabled="task.isComplete">
 
-          <div class="chips" ref="chips" :disabled="task.isComplete">
-            <input class="custom-class">
+          <div v-show="!task.isComplete" class="chips" ref="chips">
+            <input>
+          </div>
+          <div v-show="task.isComplete" class="chips input-field">
+            <div class="chip" v-for="(chip, index) in task.tags" :key="index">
+              {{chip.tag}}
+              <i class="material-icons check">check</i>
+            </div>
           </div>
 
           <button v-if="!task.isComplete" class="btn teal lighten-1 right" type="submit">
@@ -184,6 +190,11 @@ export default {
 
   form {
     position: relative;
+
+    i.check {
+      font-size: 13px;
+      padding-left: 8px;
+    }
   }
 
   .btn-floating {
