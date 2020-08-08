@@ -6,11 +6,11 @@
       </div>
 
       <div class="row">
-        <div class="left">Status: <span class="status-value" :class="{'completed': isComplete}">{{status}}</span></div>
+        <div class="left">Status: <span class="status-value" :class="{'completed': task.isComplete}">{{status}}</span></div>
         <div class="switch right">
           <label>
             Active
-            <input type="checkbox" v-model="isComplete">
+            <input type="checkbox" v-model="task.isComplete">
             <span class="lever"></span>
             Completed
           </label>
@@ -20,24 +20,30 @@
       <form @submit.prevent="onSubmit" @reset.prevent="onReset">
         <div class="row">
           <div class="input-field">
-            <input id="title" type="text" ref="title" class="validate" required v-model="task.title">
+            <input id="title" type="text" ref="title" class="validate" required v-model="task.title" :disabled="task.isComplete">
             <label for="title" ref="label-title">Title</label>
             <span class="helper-text" data-error="Title is required"></span>
           </div>
 
           <div class="input-field">
-            <textarea id="description" ref="description" class="materialize-textarea" v-model="task.description"></textarea>
+            <textarea id="description" ref="description" class="materialize-textarea" v-model="task.description" :disabled="task.isComplete"></textarea>
             <label for="description" ref="label-description">Textarea</label>
-            <span class="character-counter" style="float: right; font-size: 12px;">{{(task.description || {}).length}}/2048</span>
+            <span class="character-counter" style="float: right; font-size: 12px;">{{(task.description || '').length}}/2048</span>
           </div>
 
-          <input type="text" ref="datepicker">
+          <input type="text" ref="datepicker" :disabled="task.isComplete">
 
-          <div class="chips" ref="chips">
-            <input class="custom-class">
+          <div v-show="!task.isComplete" class="chips" ref="chips">
+            <input>
+          </div>
+          <div v-show="task.isComplete" class="chips input-field">
+            <div class="chip" v-for="(chip, index) in task.tags" :key="index">
+              {{chip.tag}}
+              <i class="material-icons check">check</i>
+            </div>
           </div>
 
-          <button v-if="!isComplete" class="btn teal lighten-1 right" type="submit">
+          <button v-if="!task.isComplete" class="btn teal lighten-1 right" type="submit">
             Update
             <i class="material-icons right">send</i>
           </button>
@@ -73,7 +79,6 @@ export default {
   name: 'task-details',
 
   data: () => ({
-    isComplete: false,
     task: {}
   }),
 
@@ -97,7 +102,7 @@ export default {
     ...mapGetters(['taskById']),
 
     status() {
-      return !this.isComplete? 'Active':'Completed';
+      return !this.task.isComplete? 'Active':'Completed';
     }
   },
 
@@ -185,6 +190,11 @@ export default {
 
   form {
     position: relative;
+
+    i.check {
+      font-size: 13px;
+      padding-left: 8px;
+    }
   }
 
   .btn-floating {
