@@ -19,7 +19,7 @@
           <td>{{task.title}}</td>
           <td class="cell-description">{{task.description}}</td>
           <td>{{dateToString(task)}}</td>
-          <td>{{getStatus(task)}}</td>
+          <td :class="getStatusColor(task)">{{getStatus(task)}}</td>
           <td><router-link class="btn" :to="`/task/${task.id}`">Open</router-link></td>
         </tr>
       </tbody>
@@ -49,6 +49,10 @@ export default {
 
     getStatus(task) {
       return (Date.now() < new Date(task.date).getTime()) ? 'active':'out of date';
+    },
+
+    getStatusColor(task) {
+      return this.getStatus(task) === 'active' ? 'green-text text-darken-1':'red-text text-darken-1';
     }
   }
 }
